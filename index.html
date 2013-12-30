@@ -15,14 +15,14 @@
     <script src="js/cultures/kendo.culture.ar-SA.min.js"></script>
 </head>
 <body>
-<!--        <script type="text/javascript">
+    <!--        <script type="text/javascript">
         kendo.culture("ar-SA");
 </script>-->
 
 
 
-    <div class="k-content">
-        <div class="k-rtl n-filter">
+    <div class="k-content" id="container">
+        <div class="k-rtl n-filter" id="employee">
             <input name="Abdulmajeed" checked type="checkbox" id="Abdulmajeed" value="1">
             <label for="Abdulmajeed" class="k-button n-abdulmajeed">⁄»œ«·„ÃÌœ</label>
             <input checked type="checkbox" id="Zahid" value="2" name="Zahid">
@@ -39,7 +39,7 @@
     <script id="editor" type="text/x-kendo-template">
       <form id="EventForm" class="k-edit-form-container" data-role="validator">
             <div class="k-edit-label" <label>«”„ «·⁄„Ì· </label></div>
-            <div class="k-edit-field"><input class="k-input k-textbox" name="title" required="required" validationMessage="«·—Ã«¡ «œŒ«· «”„ «·⁄„Ì·" /></div>
+            <div class="k-edit-field"><input data-role="autocomplete" name="title" required="required" validationMessage="«·—Ã«¡ «œŒ«· «”„ «·⁄„Ì·" /></div>
             <div class="k-edit-label"><label>„‰ «·”«⁄… </label></div>
             <div class="k-edit-field"><input data-role="datetimepicker" name="start" /></div>
             <div class="k-edit-label"><label>«·Ï «·”«⁄… </label></div>
@@ -47,12 +47,26 @@
             <div class="k-edit-label"> <label>«·Ê’› </label></div>
             <div class="k-edit-field"><textarea name="description" class="k-textbox" data-bind="value:description"></textarea></div>
             <div class="k-edit-label"><label>«·ﬂ„Ì…</label></div>
-            <div class="k-edit-field""><input class="k-input k-textbox" name="Qty" required="required" type="number" validationMessage="«·—Ã«¡ «œŒ«· «·ﬂ„Ì…" /></div>
+            <div class="k-edit-field"><input name="Qty" data-role="numerictextbox" data-min="0" data-format="0 ﬂÌ”" required="required" validationMessage="«·—Ã«¡ «œŒ«· «·ﬂ„Ì…" /></div>
             <div class="k-edit-label"><label>«·„ÊŸ›</label></div>
-            <div id="ownerId" class="k-edit-field"></div>
+            <div class="k-edit-field"><select data-role="dropdownlist" data-template="Driver"  data-source="Drivers" data-text-field="text" data-value-field="value"></select></div>
          </form>  
     </script>
+    <script id="Driver" type="text/x-kendo-template">
+        <span class="k-scheduler-mark" style="background: #: data.color #"></span><span>#: data.text #</span>
+    </script>
+        <script id="test" type="text/x-kendo-template">
+        <span class="k-scheduler-mark" style="background: #: data.color #"></span><span>#: data.text #</span>
+    </script>
     <script>
+        var Drivers = new kendo.data.DataSource({
+            data: [{ text: "⁄»œ«·„ÃÌœ", value: 1, color: "#f8a398" },
+                   { text: "“«Âœ", value: 2, color: "#51a0ed" },
+                   { text: "„Õ„œ", value: 3, color: "#56ca85" },
+                   { text: "„Õ„œ ⁄»œ«·”·«„", value: 4, color: "#568885" }, ]
+        });
+    </script>
+    <!--<script>
         var container = $("#ownerId");
         function dropDownResourceEditor(resource) {
             return function (container) {
@@ -69,12 +83,12 @@
             };
         }
 
-    </script>
+    </script>-->
     <script>
         $(function () {
             $("#scheduler").kendoScheduler({
                 date: new Date("2013/6/13"),
-                startTime: new Date("2013/6/13 07:00 AM"),
+                startTime: new Date("2013/6/13 04:00 AM"),
                 height: 600,
                 allDaySlot: false,
                 editable: {
@@ -128,11 +142,8 @@
                                 startTimezone: { from: "StartTimezone" },
                                 endTimezone: { from: "EndTimezone" },
                                 description: { from: "Description" },
-                                recurrenceId: { from: "RecurrenceID" },
-                                recurrenceRule: { from: "RecurrenceRule" },
-                                recurrenceException: { from: "RecurrenceException" },
                                 ownerId: { from: "OwnerID", },
-                                isAllDay: { type: "boolean", from: "IsAllDay" }
+                                qty: { from: "Qty" },
                             }
                         }
                     },
@@ -160,8 +171,8 @@
                 ]
             });
 
-            $("#people :checkbox").change(function (e) {
-                var checked = $.map($("#people :checked"), function (checkbox) {
+            $("#employee :checkbox").change(function (e) {
+                var checked = $.map($("#employee :checked"), function (checkbox) {
                     return parseInt($(checkbox).val());
                 });
 
@@ -181,6 +192,9 @@
                 scheduler.dataSource.filter(filter);
             });
         });
-</script>
+    </script>
+    <script>
+        kendo.init($("#container"));
+    </script>
 </body>
 </html>
