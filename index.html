@@ -46,10 +46,16 @@
             <div class="k-edit-field"><input data-role="datetimepicker" name="end" /></div>
             <div class="k-edit-label"> <label>«·Ê’› </label></div>
             <div class="k-edit-field"><textarea name="description" class="k-textbox" data-bind="value:description"></textarea></div>
-            <div class="k-edit-label"><label>«·ﬂ„Ì…</label></div>
+            <div class="k-edit-label"><label name="cellNumber">—ﬁ„ «·ÃÊ«·</label></div>
+            <div class="k-edit-field"><input data-role="autocomplete" name="cellNumber"></div> 
+            <div class="k-edit-label"><label name="Qty">«·ﬂ„Ì…</label></div>
             <div class="k-edit-field"><input name="Qty" data-role="numerictextbox" data-min="0" data-format="0 ﬂÌ”" required="required" validationMessage="«·—Ã«¡ «œŒ«· «·ﬂ„Ì…" /></div>
-            <div class="k-edit-label"><label>«·„ÊŸ›</label></div>
-            <div class="k-edit-field"><select data-role="dropdownlist" data-template="Driver"  data-source="Drivers" data-text-field="text" data-value-field="value"></select></div>
+            <div class="k-edit-label"><label name="type">«·‰Ê⁄</label></div>
+            <div class="k-edit-field"><input data-role="dropdownlist" name="type" /></div>
+            <div class="k-edit-label"><label name="driver">«·„ÊŸ›</label></div>
+            <div class="k-edit-field"><select data-role="dropdownlist" data-template="Driver" name="driver" data-source="Drivers" data-text-field="text" data-value-field="value"></select></div>
+            <div class="k-edit-label"><label name="delivered"> „ «· Ê’Ì·</label></div>
+            <div class="k-edit-field"><input name="delivered" type="checkbox" /></div>
          </form>  
     </script>
     <script id="Driver" type="text/x-kendo-template">
