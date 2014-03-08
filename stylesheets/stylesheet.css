@@ -173,7 +173,7 @@ code, pre {
 }
 
 code {
-  background-color: #f2f2f2;
+  background-color: #000;
   border: solid 1px #ddd;
   padding: 0 3px;
 }
@@ -181,12 +181,13 @@ code {
 pre {
   padding: 20px;
   background: #303030;
-  color: #f2f2f2;
+  color: #000;
   text-shadow: none;
   overflow: auto;
+  text-align:left;
 }
 pre code {
-  color: #f2f2f2;
+  color: #000;
   background-color: #303030;
   border: none;
   padding: 0;
